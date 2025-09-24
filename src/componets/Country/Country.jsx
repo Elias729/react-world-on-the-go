@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Country.css";
 
-const Country = ({ country, handelVisitedCountry }) => {
-  console.log(country);
+const Country = ({ country, handelVisitedCountry, handelVisitedFlag }) => {
+  // console.log(country);
 
   const [visited, setVisited] = useState(false);
 
@@ -27,12 +27,20 @@ const Country = ({ country, handelVisitedCountry }) => {
           Area: {country.area.area}
           {country.area.area > 300000 ? "Large Country" : "Small Country"}{" "}
         </p>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer mt-4"
-          onClick={handelVisited}
-        >
-          {visited ? "Visited" : "Not Visited"}
-        </button>
+        <div className="mt-auto flex gap-4">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer mt-4"
+            onClick={handelVisited}
+          >
+            {visited ? "Visited" : "Not Visited"}
+          </button>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer mt-4"
+            onClick={() => handelVisitedFlag(country.flags.flags.png)}
+          >
+            Add Visited Flag
+          </button>
+        </div>
       </div>
     </>
   );

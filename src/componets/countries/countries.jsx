@@ -3,10 +3,16 @@ import Country from "../Country/Country";
 
 const Countries = ({ countryPromise }) => {
   const [visitedCountries, setVisitedCountries] = useState([]);
+  const [addVisitedFlag, setAddVisitedFlag] = useState([]);
 
   const handelVisitedCountry = (country) => {
     const newVisitedCountries = [...visitedCountries, country];
     setVisitedCountries(newVisitedCountries);
+  };
+
+  const handelVisitedFlag = (flag) => {
+    const newVisitedFlag = [...addVisitedFlag, flag];
+    setAddVisitedFlag(newVisitedFlag);
   };
 
   const countriesData = use(countryPromise);
@@ -21,6 +27,9 @@ const Countries = ({ countryPromise }) => {
         <h3 className="text-xl font-bold mb-2 ">
           Total Countries Visited: {visitedCountries.length}
         </h3>
+        <h3 className="text-xl font-bold mb-2 ">
+          Total Flags Added: {addVisitedFlag.length}
+        </h3>
         <ol className="mb-4 ml-4 flex flex-wrap justify-center items-center gap-4">
           {visitedCountries.map((country) => (
             <li key={country.cca3.cca3}>{country.name.common}</li>
@@ -34,6 +43,7 @@ const Countries = ({ countryPromise }) => {
             key={country.cca3.cca3}
             country={country}
             handelVisitedCountry={handelVisitedCountry}
+            handelVisitedFlag={handelVisitedFlag}
           ></Country>
         ))}
       </div>
